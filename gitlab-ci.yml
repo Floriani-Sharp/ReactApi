@@ -1,0 +1,18 @@
+image: alpine   #definition d'une image de base commune a tous les jobs 
+
+stages: # Ici on déclare toutes nos étapes
+  - deploy
+
+deploy-to-vercel:
+  stage: deploy
+  image: node:14.4-alpine3.11
+  script:
+    - npm i -g vercel
+    - DEPLOYMENT_URL=$(vercel --token zyxA6F1Cp14iw8MIlUC4KZku --confirm)
+    - echo $DEPLOYMENT_URL >vercel_deployment_url.txt
+  artifacts:
+    when: on_success
+    paths:
+      - vercel_deployment_url.txt
+
+

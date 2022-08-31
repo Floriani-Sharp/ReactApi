@@ -1,0 +1,81 @@
+{
+  "name": "diag-audit",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev:react": "react-app-rewired start",
+    "dev": "npm-run-all --parallel dev:*",
+    "build": "react-app-rewired build",
+    "inline": "npm run build && gulp",
+    "lint": "eslint --cache \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx}\"",
+    "prepare": "husky install"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.2",
+    "axios": "^0.27.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.51.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.18.3",
+    "@redux-devtools/core": "^3.12.0",
+    "autoprefixer": "^10.4.4",
+    "customize-cra": "^1.0.0",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "gulp": "^4.0.2",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.3",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.12",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.8",
+    "react-app-rewired": "^2.2.1",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.24"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "yarn run lint:fix"
+  }
+}
