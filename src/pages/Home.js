@@ -4,16 +4,30 @@ import React, { useState } from 'react';
 import personWalk from '../images/person_walk.jpg';
 import Login from './Login';
 
-const MyInformations = ({ show, loadInformations, listInformation }) => {
+const MyInformations = ({
+  show,
+  loadInformations,
+  changeType,
+  listInformation,
+}) => {
   return !show ? (
-    <button
-      type="button"
-      className="my-10 rounded-full bg-gradient-to-br from-purple-700 to-amber-700 py-2 px-4 font-bold 
+    <>
+      <label htmlFor="type">
+        <strong>Type de manutentionnaire &nbsp;</strong>
+        <select name="type" id="type" onChange={changeType}>
+          <option value="TSOBE">TSOBE</option>
+          <option value="BT">BT</option>
+        </select>
+      </label>
+      <button
+        type="button"
+        className="my-10 rounded-full bg-gradient-to-br from-purple-700 to-amber-700 py-2 px-4 font-bold 
 text-white hover:opacity-70"
-      onClick={loadInformations}
-    >
-      Afficher les informations
-    </button>
+        onClick={loadInformations}
+      >
+        Afficher les informations
+      </button>
+    </>
   ) : (
     <div className="w-full">
       {listInformation.map((informations) => (
@@ -30,13 +44,14 @@ text-white hover:opacity-70"
 const Home = () => {
   const [connected, setConnected] = useState(false);
   const [show, setShow] = useState(false);
+  const [type, setType] = useState('TSOBE');
   const [listInformation, setListInformation] = useState([]);
   const loadInformations = () => {
     setShow(true);
     setListInformation([
       {
         label: 'Manutentionnaire',
-        value: 'Manutentionnaire',
+        value: type,
       },
       {
         label: 'Numero conteneur',
@@ -76,8 +91,12 @@ const Home = () => {
       },
     ]);
   };
+  const changeType = (e) => {
+    setType(e.target.value);
+  };
   const logOut = () => {
     setShow(false);
+    setType('TSOBE');
     setConnected(false);
   };
   const signIn = () => {
@@ -107,6 +126,7 @@ const Home = () => {
                   show={show}
                   listInformation={listInformation}
                   loadInformations={() => loadInformations()}
+                  changeType={(e) => changeType(e)}
                 />
               </div>
             </div>
@@ -148,5 +168,6 @@ MyInformations.propTypes = {
   show: PropTypes.bool,
   listInformation: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   loadInformations: PropTypes.func,
+  changeType: PropTypes.func,
 };
 export default Home;
