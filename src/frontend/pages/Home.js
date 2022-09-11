@@ -110,6 +110,13 @@ const Home = () => {
       .catch((err) => {
         console.log('ERROR OCCURED', err);
       });
+    getHandler()
+      .then((res) => {
+        console.log('RES', res);
+      })
+      .catch((err) => {
+        console.log('ERROR OCCURED', err);
+      });
   };
   useEffect(() => {
     if (inititalRows.length === 0) {
